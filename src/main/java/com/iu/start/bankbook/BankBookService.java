@@ -1,11 +1,14 @@
 package com.iu.start.bankbook;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BankBookService {
+	@Autowired
 	private BankBookDAO bankBookDAO;
 	
 public int setDelete(BankBookDTO bankBookDTO)throws Exception{
@@ -24,7 +27,7 @@ public int setDelete(BankBookDTO bankBookDTO)throws Exception{
 	};
 	
 	// BankBook에 있는 모든 데이터 조회 최신순 정렬
-	public ArrayList<BankBookDTO> getList() throws Exception{
+	public List<BankBookDTO> getList() throws Exception{
 		return bankBookDAO.getList();
 	};
 	

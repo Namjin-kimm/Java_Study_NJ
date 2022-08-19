@@ -1,8 +1,9 @@
 package com.iu.start.bankbook;
 
-import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping(value = "/bankbook/*")
 public class BankBookController {
+	@Autowired
 	private BankBookService bankBookService;
 	
 	// /bankbook/delete GET
@@ -45,11 +47,11 @@ public class BankBookController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "list", method = RequestMethod.GET)
+	@RequestMapping(value = "list.iu", method = RequestMethod.GET)
 	public String list(Model model) throws Exception{
 		System.out.println("list 실행");
 //		ModelAndView mv = new ModelAndView();
-		ArrayList<BankBookDTO> ar = bankBookService.getList();
+		List<BankBookDTO> ar = bankBookService.getList();
 		model.addAttribute("list", ar);
 		return "bankbook/list";
 	}

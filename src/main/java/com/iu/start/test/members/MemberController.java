@@ -25,7 +25,7 @@ public class MemberController {
 	//annotation
 	//@ : 설명 + 실행
 	
-	@RequestMapping(value = "logout", method = RequestMethod.GET )
+	@RequestMapping(value = "logout.nj", method = RequestMethod.GET )
 	public String logout(HttpSession session)throws Exception{
 		session.invalidate();
 		return "redirect: ../";

@@ -17,6 +17,10 @@
     	INSERT INTO BANKBOOK VALUES (#{bookNum}, #{bookName}, #{bookRate}, #{bookSale})
     </insert>
     
+    <select id="getList" parameterType="java.lang.String" resultType="BankBookDTO">
+    	SELECT * FROM BANKBOOK
+    </select>
+    
     
     </mapper>
     

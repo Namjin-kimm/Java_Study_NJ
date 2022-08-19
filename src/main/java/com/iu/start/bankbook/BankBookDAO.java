@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,25 +63,25 @@ public class BankBookDAO implements BookDAO {
 	}
 
 	@Override
-	public ArrayList<BankBookDTO> getList() throws Exception {
+	public List<BankBookDTO> getList() throws Exception {
 		// TODO Auto-generated method stub
-		Connection con = DBConnector.getConnection();
-		ArrayList<BankBookDTO> arr = new ArrayList<BankBookDTO>();
-		String sql = "SELECT * FROM BANKBOOK ORDER BY BOOKNUM DESC";
-		PreparedStatement st = con.prepareStatement(sql);
-		ResultSet rs = st.executeQuery();
-		while(rs.next()) {
-			BankBookDTO bankBookDTO = new BankBookDTO();
-			bankBookDTO.setBookNum(rs.getLong("BOOKNUM"));
-			bankBookDTO.setBookName(rs.getString("BOOKNAME"));
-			bankBookDTO.setBookRate(rs.getDouble("BOOKRATE"));
-			bankBookDTO.setBookSale(rs.getInt("BOOKSALE"));
-			
-			arr.add(bankBookDTO);
-		}
-		DBConnector.disConnection(rs, st, con);
+//		Connection con = DBConnector.getConnection();
+//		ArrayList<BankBookDTO> arr = new ArrayList<BankBookDTO>();
+//		String sql = "SELECT * FROM BANKBOOK ORDER BY BOOKNUM DESC";
+//		PreparedStatement st = con.prepareStatement(sql);
+//		ResultSet rs = st.executeQuery();
+//		while(rs.next()) {
+//			BankBookDTO bankBookDTO = new BankBookDTO();
+//			bankBookDTO.setBookNum(rs.getLong("BOOKNUM"));
+//			bankBookDTO.setBookName(rs.getString("BOOKNAME"));
+//			bankBookDTO.setBookRate(rs.getDouble("BOOKRATE"));
+//			bankBookDTO.setBookSale(rs.getInt("BOOKSALE"));
+//			
+//			arr.add(bankBookDTO);
+//		}
+//		DBConnector.disConnection(rs, st, con);
 		
-		return arr;
+		return sqlSession.selectList(NAMESPACE + "getList");
 	}
 
 	@Override
