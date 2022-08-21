@@ -11,7 +11,7 @@
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
-	<section clas="container-fluid col-lg-8 mt-4" >
+	<section class="container-fluid col-lg-8 mt-4" >
 	<h1>BankBook Detail</h1>
 	
 	<!-- /bankbook/detail -->
@@ -23,7 +23,7 @@
 <table class="table table-striped">
 	<thead>
 		<tr>
-			<th>BookNum</th><th>BookName</th><th>BookRate</th><th>BookSale</th>
+			<th>BookNum</th><th>BookName</th><th>BookRate</th><th>BookSale</th><th>BookContents</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -32,6 +32,7 @@
 			<td>${requestScope.detail.bookName}</td>
 			<td>${detail.bookRate}</td>
 			<td>${detail.bookSale}</td>
+			<td>${detail.bookContents}</td>
 			
 			<%-- <td><%=bankBookDTO.getBookNum() %></td>
 			<td><%=bankBookDTO.getBookName() %></td>
