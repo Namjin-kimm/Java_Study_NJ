@@ -49,17 +49,17 @@ public class BankBookDAO implements BookDAO {
 	@Override
 	public int setBankBook(BankBookDTO bankBookDTO) throws Exception {
 		// TODO Auto-generated method stub
-		Calendar ca = Calendar.getInstance();	
-		Connection con = DBConnector.getConnection();
-		String sql = "INSERT INTO BANKBOOK VALUES (?, ?, ?, 1)";
-		PreparedStatement st = con.prepareStatement(sql);
-		st.setLong(1, ca.getTimeInMillis());
-		st.setString(2, bankBookDTO.getBookName());
-		st.setDouble(3, bankBookDTO.getBookRate());
-		int result = st.executeUpdate();
-		DBConnector.disConnection(st, con);
-		
-		return result;
+//		Calendar ca = Calendar.getInstance();	
+//		Connection con = DBConnector.getConnection();
+//		String sql = "INSERT INTO BANKBOOK VALUES (?, ?, ?, 1)";
+//		PreparedStatement st = con.prepareStatement(sql);
+//		st.setLong(1, ca.getTimeInMillis());
+//		st.setString(2, bankBookDTO.getBookName());
+//		st.setDouble(3, bankBookDTO.getBookRate());
+//		int result = st.executeUpdate();
+//		DBConnector.disConnection(st, con);
+//		
+		return sqlSession.update(NAMESPACE + "setBankBook", bankBookDTO);
 	}
 
 	@Override
@@ -117,25 +117,25 @@ public class BankBookDAO implements BookDAO {
 	@Override
 	public BankBookDTO getDetail(BankBookDTO bankBookDTO) throws Exception {
 		// TODO Auto-generated method stub
-		Connection con = DBConnector.getConnection();
-		
-		String sql = "SELECT * FROM BANKBOOK WHERE BOOKNUM = ?";
-		
-		PreparedStatement st = con.prepareStatement(sql);
-
-		st.setLong(1, bankBookDTO.getBookNum());
-		
-		ResultSet rs = st.executeQuery();
-		
-		BankBookDTO dto = new BankBookDTO();
-		if(rs.next()) {
-			dto.setBookNum(rs.getLong("BOOKNUM"));
-			dto.setBookName(rs.getString("BOOKNAME"));
-			dto.setBookRate(rs.getDouble("BOOKRATE"));
-			dto.setBookSale(rs.getInt("BOOKSALE"));
-		}
-		DBConnector.disConnection(rs, st, con);
-		return dto;
+//		Connection con = DBConnector.getConnection();
+//		
+//		String sql = "SELECT * FROM BANKBOOK WHERE BOOKNUM = ?";
+//		
+//		PreparedStatement st = con.prepareStatement(sql);
+//
+//		st.setLong(1, bankBookDTO.getBookNum());
+//		
+//		ResultSet rs = st.executeQuery();
+//		
+//		BankBookDTO dto = new BankBookDTO();
+//		if(rs.next()) {
+//			dto.setBookNum(rs.getLong("BOOKNUM"));
+//			dto.setBookName(rs.getString("BOOKNAME"));
+//			dto.setBookRate(rs.getDouble("BOOKRATE"));
+//			dto.setBookSale(rs.getInt("BOOKSALE"));
+//		}
+//		DBConnector.disConnection(rs, st, con);
+		return sqlSession.selectOne(NAMESPACE + "getDetail", bankBookDTO);
 	}
 
 }

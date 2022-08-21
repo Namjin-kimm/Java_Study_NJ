@@ -14,11 +14,15 @@
     </update>
     
     <insert id="setBankBook" parameterType="BankBookDTO">
-    	INSERT INTO BANKBOOK VALUES (#{bookNum}, #{bookName}, #{bookRate}, #{bookSale})
+    	INSERT INTO BANKBOOK VALUES (#{bookNum}, #{bookName}, #{bookRate}, #{bookSale}, #{bookContents})
     </insert>
     
     <select id="getList" parameterType="java.lang.String" resultType="BankBookDTO">
     	SELECT * FROM BANKBOOK
+    </select>
+    
+    <select id="getDetail" parameterType="BankBookDTO" resultType="BankBookDTO">
+    	SELECT * FROM BANKBOOK WHERE BOOKNUM = #{bookNum}
     </select>
     
     

@@ -23,7 +23,7 @@ public class BankBookController {
 		ModelAndView mv = new ModelAndView();
 		int result = bankBookService.setDelete(bankBookDTO);
 		System.out.println(result);
-		mv.setViewName("redirect: list");
+		mv.setViewName("redirect: list.iu");
 		
 		return mv;
 		
@@ -81,12 +81,12 @@ public class BankBookController {
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public ModelAndView add(BankBookDTO bankBookDTO) throws Exception {
 		System.out.println("실행");
-		Calendar calendar = null;
-		bankBookDTO.setBookNum(calendar.getTimeInMillis());
+		bankBookDTO.setBookNum(Calendar.getInstance().getTimeInMillis());
+		bankBookDTO.setBookSale(1);
 		ModelAndView mv = new ModelAndView();
 		int result = bankBookService.setBankBook(bankBookDTO);
 		System.out.println(result);
-		mv.setViewName("redirect:list");
+		mv.setViewName("redirect:list.iu");
 		return mv;
 	}
 

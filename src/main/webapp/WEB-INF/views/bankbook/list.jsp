@@ -16,7 +16,7 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>Name</th><th>Rate</th><th>Sale</th>
+				<th>Name</th><th>Rate</th><th>Sale</th><th>Contents</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -34,6 +34,7 @@
 					<td><a href ="detail?bookNum=${dto.bookNum}">${dto.bookName}</a></td>
 					<td>${dto.bookRate}</td>
 					<td>${dto.bookSale}</td>
+					<td>${dto.bookContents}</td>
 				</tr>
 			</c:forEach>
 			<%-- <%ArrayList<BankBookDTO> ar = (ArrayList<BankBookDTO>)request.getAttribute("list"); %>
