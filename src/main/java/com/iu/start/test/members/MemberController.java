@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.start.bankAccount.BankAccountService;
 import com.iu.start.bankbook.BankBookDTO;
 
 @Controller
@@ -22,9 +23,21 @@ public class MemberController {
 	@Autowired
 	private BankMembersService bankMembersService;
 	
+//	@Autowired
+//	private BankAccountService bankAccountService;
+	
 	//annotation
 	//@ : 설명 + 실행
 	
+	@RequestMapping(value = "myPage.iu", method = RequestMethod.GET)
+	public ModelAndView myPage(HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		BankMembersDTO bankMembersDTO = (BankMembersDTO) session.getAttribute("member");
+		bankMembersDTO = bankMembersService.getMyPage(bankMembersDTO);
+		mv.addObject("myPage", bankMembersDTO);
+		mv.setViewName("member/mypage");
+		return mv;
+	}
 	@RequestMapping(value = "logout.nj", method = RequestMethod.GET )
 	public String logout(HttpSession session)throws Exception{
 		session.invalidate();

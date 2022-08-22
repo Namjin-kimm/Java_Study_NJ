@@ -22,7 +22,7 @@
                             
                             <c:choose>
                             	<c:when test="${not empty member}">
-                            <a class="nav-link active" href="/bankbook/list.iu">마이페이지</a>
+                            <a class="nav-link active" href="/member/myPage.iu">마이페이지</a>
                             <a class="nav-link active" href="/member/logout.nj">로그아웃</a>
                            		</c:when>
                            	 	<c:otherwise>

@@ -13,9 +13,16 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class BankMembersDAO implements MembersDAO{
+
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.iu.start.test.members.BankMembersDAO.";
+	
+	@Override
+	public BankMembersDTO getMyPage(BankMembersDTO bankMembersDTO) throws Exception {
+		bankMembersDTO = sqlSession.selectOne(NAMESPACE + "getMyPage", bankMembersDTO);
+		return bankMembersDTO;
+	}
 	
 	public BankMembersDTO getLogin(BankMembersDTO bankMembersDTO)throws Exception{
 		

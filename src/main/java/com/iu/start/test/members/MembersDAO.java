@@ -10,4 +10,6 @@ public interface MembersDAO {
 	public List<BankMembersDTO> getSearchById(String search) throws Exception;
 
 	public BankMembersDTO getLogin(BankMembersDTO bankMembersDTO)throws Exception;
+	
+	public BankMembersDTO getMyPage(BankMembersDTO bankMembersDTO)throws Exception;
 }

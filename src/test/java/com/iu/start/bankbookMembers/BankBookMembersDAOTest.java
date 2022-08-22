@@ -16,6 +16,18 @@ public class BankBookMembersDAOTest extends MyAbstractTest{
 	private BankMembersDAO bankMembersDAO;
 	
 	@Test
+	public void getMyPageTest() throws Exception {
+		BankMembersDTO bankMembersDTO = new BankMembersDTO();
+		bankMembersDTO.setUsername("QQQQQQQ");
+		bankMembersDTO.setEmail("QQQ@QQQQ");
+		bankMembersDTO.setName("QQQQQQQQ");
+		bankMembersDTO.setPhone("QQ");
+		bankMembersDTO = bankMembersDAO.getMyPage(bankMembersDTO);
+		System.out.println(bankMembersDTO.getEmail());
+		assertNotNull(bankMembersDTO);
+	}
+	
+//	@Test
 	public void setJoinTest()throws Exception{
 		BankMembersDTO bankMembersDTO = new BankMembersDTO();
 		bankMembersDTO.setUsername("QQQQQQQ");
@@ -28,7 +40,7 @@ public class BankBookMembersDAOTest extends MyAbstractTest{
 		assertEquals(1, result);
 	}
 	
-	@Test
+//	@Test
 	public void getLoginTest()throws Exception{
 		BankMembersDTO bankMembersDTO = new BankMembersDTO();
 		bankMembersDTO.setUsername("RR");
@@ -37,7 +49,7 @@ public class BankBookMembersDAOTest extends MyAbstractTest{
 		assertNotNull(obj);
 	}
 	
-	@Test
+//	@Test
 	public void getSearch() throws Exception{
 		String search = "ㅎ";
 		List<BankMembersDTO> ar = bankMembersDAO.getSearchById(search);
