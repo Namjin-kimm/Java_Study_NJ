@@ -46,7 +46,7 @@
 	<%-- <%}else{ %>
 	<h3>Data가 없다</h3>
 	<%} %> --%>
-	<a href="list">리스트보기</a>
+	<a href="list.iu">리스트보기</a>
 	<a href="update?bookNum=${detail.bookNum}">수정</a>
 	<a href="delete?bookNum=${detail.bookNum}">삭제</a>
 	
