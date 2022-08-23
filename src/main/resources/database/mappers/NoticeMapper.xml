@@ -5,21 +5,25 @@
 		    
 <mapper namespace="com.iu.home.board.notice.NoticeDAO">
 
-	<select id="getList" parameterType="NoticeDTO" resultType="NoticeDTO">
+	<select id="getList" resultType="NoticeDTO">
 		SELECT * FROM NOTICE
 	</select>
 
-	<insert id="setAdd" parameterType="NoticeDTO">
-		INSERT INTO NOTICE VALUES (BOARD_SEQ.NEXTVAL, #{title}, #{writer}, #{contents}, SYSDATE, #{hit})
+	<insert id="setAdd" parameterType="BoardDTO">
+		INSERT INTO NOTICE VALUES (BOARD_SEQ.NEXTVAL, #{title}, #{writer}, #{contents}, SYSDATE, 0)
 	</insert>
 	
-	<select id="getDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
+	<select id="getDetail" parameterType="BoardDTO" resultType="NoticeDTO">
 	 	SELECT * FROM NOTICE WHERE NUM = #{num}
 	</select>
 	
-	<update id="setUdate" parameterType="NoticeDTO">
+	<update id="setUpdate" parameterType="BoardDTO">
 		UPDATE NOTICE SET TITLE = #{title}, CONTENTS = #{contents} WHERE NUM = #{num}
 	</update>
+	
+	<delete id="setDelete" parameterType="BoardDTO">
+		DELETE NOTICE WHERE NUM = #{num}
+	</delete>
 
 		    
 </mapper>
