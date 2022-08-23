@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>List</title>
+<title>QnA List</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <body>
@@ -23,7 +23,7 @@
 				<c:forEach items="${list}" var="dto">
 					<tr>
 						<td>${dto.num}</td>
-						<td>${dto.title}</td>
+						<td><a href="detail.iu?num=${dto.num}">${dto.title}</a></td>
 						<td>${dto.writer}</td>
 						<td>${dto.regDate}</td>
 						<td>${dto.hit}</td>
@@ -31,6 +31,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		<a href="add.iu">QnA 등록</a>
 	</section>
 	<c:import url="../template/footer.jsp"></c:import>
 </body>

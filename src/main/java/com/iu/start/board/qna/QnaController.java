@@ -2,6 +2,8 @@ package com.iu.start.board.qna;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,7 +43,7 @@ public class QnaController {
 	@RequestMapping(value = "add.iu", method = RequestMethod.POST)
 	public String setAdd(BoardDTO boardDTO) throws Exception {
 		int result = qnaService.setAdd(boardDTO);
-		return "redirect:qna/detail.iu?num=" + boardDTO.getNum();
+		return "redirect:list.iu";
 	}
 	
 	@RequestMapping(value = "update.iu")
