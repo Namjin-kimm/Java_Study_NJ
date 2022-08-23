@@ -18,7 +18,7 @@ public class NoticeDAOTest extends MyAbstractTest{
 	private NoticeDAO noticeDAO;
 	
 	@Test
-	public void setAdd() throws Exception {
+	public void setAddTest() throws Exception {
 		BoardDTO boardDTO = new BoardDTO();
 //		NoticeDTO noticeDTO = new NoticeDTO();
 		boardDTO.setTitle("KK");
@@ -44,7 +44,7 @@ public class NoticeDAOTest extends MyAbstractTest{
 	}
 	
 //	@Test
-	public void setUpdate() throws Exception {
+	public void setUpdateTest() throws Exception {
 		BoardDTO boardDTO = new BoardDTO();
 //		NoticeDTO noticeDTO = new NoticeDTO();
 		boardDTO.setNum(1L);
@@ -55,7 +55,7 @@ public class NoticeDAOTest extends MyAbstractTest{
 	}
 	
 //	@Test
-	public void setDelete() throws Exception {
+	public void setDeleteTest() throws Exception {
 		BoardDTO boardDTO = new BoardDTO();
 //		NoticeDTO noticeDTO = new NoticeDTO();
 		boardDTO.setNum(1L);
