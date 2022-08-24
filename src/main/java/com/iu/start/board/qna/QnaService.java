@@ -1,6 +1,8 @@
 package com.iu.start.board.qna;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +16,22 @@ public class QnaService implements BoardService{
 	private QnaDAO qnaDAO;
 
 	@Override
-	public List<BoardDTO> getList() throws Exception {
-		return qnaDAO.getList();
+	public List<BoardDTO> getList(Long page) throws Exception {
+		Long perPage = 10L; //한 페이지에 출력할 목록의 갯수
+//		page		startRow		lastRow
+//		1			1				5
+//		2			6				10
+//		3			11				15
+		
+		Long startRow = (page - 1)*perPage + 1;
+		Long lastRow = page*perPage;
+		
+		System.out.println("StartRow : " + startRow);
+		System.out.println("LastRow : " + lastRow);
+		Map<String, Long> map = new HashMap<String, Long>();
+		map.put("startRow", startRow);
+		map.put("lastRow", lastRow);
+		return qnaDAO.getList(map);
 	}
 
 	@Override

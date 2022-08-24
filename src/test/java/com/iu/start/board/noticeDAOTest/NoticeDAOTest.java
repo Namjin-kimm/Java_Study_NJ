@@ -17,22 +17,29 @@ public class NoticeDAOTest extends MyAbstractTest{
 	@Autowired
 	private NoticeDAO noticeDAO;
 	
-	@Test
+//	@Test
 	public void setAddTest() throws Exception {
 		BoardDTO boardDTO = new BoardDTO();
 //		NoticeDTO noticeDTO = new NoticeDTO();
-		boardDTO.setTitle("KK");
-		boardDTO.setWriter("KNJ");
-		boardDTO.setContents("kkkkkk");
+		for(int i = 0; i <100; i++) {
+		boardDTO.setTitle("KK" + i);
+		boardDTO.setWriter("KNJ" + i);
+		boardDTO.setContents("kkkkkk" + i);
 		int result = noticeDAO.setAdd(boardDTO);
-		assertEquals(1, result);
+		
+			if(i%10 == 0) {
+				Thread.sleep(500);
+				}
+		}
+		System.out.println("Finish!!!");
+//		assertEquals(1, result);
 	}
 	
 //	@Test
-	public void getListTest() throws Exception {
-		List<BoardDTO> ar = noticeDAO.getList();
-		assertNotEquals(0, ar.size());
-	}
+//	public void getListTest() throws Exception {
+//		List<BoardDTO> ar = noticeDAO.getList();
+//		assertNotEquals(0, ar.size());
+//	}
 	
 //	@Test
 	public void getDetailTest() throws Exception {
@@ -61,6 +68,12 @@ public class NoticeDAOTest extends MyAbstractTest{
 		boardDTO.setNum(1L);
 		int result = noticeDAO.setDelete(boardDTO);
 		assertEquals(1, result);
+	}
+	
+	@Test
+	public void getCount() throws Exception {
+		long result = noticeDAO.getCount();
+		System.out.println(result);
 	}
 
 }

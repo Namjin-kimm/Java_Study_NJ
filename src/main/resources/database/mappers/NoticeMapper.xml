@@ -5,8 +5,11 @@
 		    
 <mapper namespace="com.iu.home.board.notice.NoticeDAO">
 
-	<select id="getList" resultType="NoticeDTO">
-		SELECT * FROM NOTICE
+	<select id="getList" resultType="NoticeDTO" parameterType="java.util.Map">
+		SELECT * FROM 
+			(SELECT ROWNUM R, N.* FROM
+				(SELECT * FROM NOTICE ORDER BY NUM DESC) N)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
 
 	<insert id="setAdd" parameterType="BoardDTO">
@@ -24,6 +27,10 @@
 	<delete id="setDelete" parameterType="BoardDTO">
 		DELETE NOTICE WHERE NUM = #{num}
 	</delete>
+	
+	<select id="getCount" resultType="Long">
+		SELECT COUNT(NUM) FROM NOTICE
+	</select>
 
 		    
 </mapper>

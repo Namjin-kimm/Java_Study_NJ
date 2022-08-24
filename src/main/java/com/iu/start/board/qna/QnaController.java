@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,13 +18,18 @@ import com.iu.start.board.impl.BoardDTO;
 public class QnaController {
 	@Autowired
 	private QnaService qnaService;
+	
+	@ModelAttribute("board")
+	public String getBoard() {
+		return "QnA";
+	}
 
 	@RequestMapping(value = "list.iu")
-	public ModelAndView getList() throws Exception {
+	public ModelAndView getList(Long page) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<BoardDTO> ar = qnaService.getList();
+		List<BoardDTO> ar = qnaService.getList(page);
 		mv.addObject("list", ar);
-		mv.addObject("board", "QnA");
+//		mv.addObject("board", "QnA");
 		mv.setViewName("board/list");
 		return mv;
 	}
@@ -33,7 +39,7 @@ public class QnaController {
 		ModelAndView mv = new ModelAndView();
 		boardDTO = qnaService.getDetail(boardDTO);
 		mv.addObject("boardDTO", boardDTO);
-		mv.addObject("board", "QnA");
+//		mv.addObject("board", "QnA");
 		mv.setViewName("board/detail");
 		return mv;
 	}
@@ -41,7 +47,7 @@ public class QnaController {
 	@RequestMapping(value = "add.iu")
 	public ModelAndView setAdd() throws Exception {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("board", "QnA");
+//		mv.addObject("board", "QnA");
 		mv.setViewName("board/add");
 		return mv;
 	}
@@ -55,7 +61,7 @@ public class QnaController {
 	public ModelAndView setUpdate(BoardDTO boardDTO, ModelAndView mv) throws Exception {
 		boardDTO = qnaService.getDetail(boardDTO);
 		mv.addObject("boardDTO", boardDTO);
-		mv.addObject("board", "QnA");
+//		mv.addObject("board", "QnA");
 		mv.setViewName("board/update");
 		return mv;
 	}
