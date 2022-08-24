@@ -23,22 +23,29 @@ public class NoticeController {
 		ModelAndView mv = new ModelAndView();
 		List<BoardDTO> ar = noticeService.getList();
 		mv.addObject("list", ar);
-		mv.setViewName("notice/list");
+		mv.addObject("board", "Notice");
+		mv.setViewName("board/list");
 		return mv;
 	}
 	
 //	글상세
 	@RequestMapping(value = "detail.iu", method = RequestMethod.GET)
-	public String getDetail(BoardDTO boardDTO, Model model)throws Exception{
+	public ModelAndView getDetail(BoardDTO boardDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
 		boardDTO = noticeService.getDetail(boardDTO);
-		model.addAttribute("boardDTO", boardDTO);
-		return "notice/detail";
+		mv.addObject("boardDTO", boardDTO);
+		mv.addObject("board", "Notice");
+		mv.setViewName("board/detail");
+		return mv;
 	}
 	
 //	글작성
 	@RequestMapping(value = "add.iu", method = RequestMethod.GET)
-	public String setAdd()throws Exception{
-		return "notice/add";
+	public ModelAndView setAdd()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("board", "Notice");
+		mv.setViewName("board/add");
+		return mv;
 	}
 	
 	@RequestMapping(value = "add.iu", method = RequestMethod.POST)
@@ -54,7 +61,8 @@ public class NoticeController {
 	public ModelAndView setUpdate(BoardDTO boardDTO, ModelAndView mv)throws Exception{
 		boardDTO = noticeService.getDetail(boardDTO);
 		mv.addObject("boardDTO", boardDTO);
-		mv.setViewName("notice/update");
+		mv.addObject("board", "Notice");
+		mv.setViewName("board/update");
 		return mv;
 	}
 	@RequestMapping(value = "update.iu", method = RequestMethod.POST)

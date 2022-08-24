@@ -12,7 +12,7 @@
 
 <form action="add.iu" method="post">
 			<section class="container-fluid col-lg-8 mt-4">
-				<h1>Add Page</h1>
+				<h1>${board} Add Page</h1>
 				<p>Writer</p>
 				<p><input class="form-control form-control-lg" readonly="readonly" type="text" aria-label=".form-control-lg example" value="${member.username}" name="writer"></p>
 				<p>Title</p>
