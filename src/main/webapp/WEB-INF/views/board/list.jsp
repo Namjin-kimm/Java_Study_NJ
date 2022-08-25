@@ -12,6 +12,33 @@
 	<c:import url="../template/header.jsp"></c:import>
 	<section class = "container-fluid col-lg-8 mt-4">
 		<h1>${board} List Page</h1>
+		
+
+		<div class = "row">
+			<form action="list.iu" method="get" class="row row-cols-lg-auto g-3 align-items-center">
+			
+			  <div class="col-12">
+			    <label class="visually-hidden" for="kind">Preference</label>
+			    <select name="kind" class="form-select" id="kind">
+			      <option value="contents">Contents</option>
+			      <option value="title">Title</option>
+			      <option value="writer">Writer</option>
+			    </select>
+			  </div>
+			  
+			  <div class="col-12">
+			    <label class="visually-hidden" for="search">검색어</label>
+			    <div class="input-group">
+			      <input type="text" name="search" class="form-control" id="search">
+			    </div>
+			  </div>
+
+			  <div class="col-12">
+			    <button type="submit" class="btn btn-primary">Submit</button>
+			  </div>
+			</form>
+		</div>
+		
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -23,7 +50,12 @@
 				<c:forEach items="${list}" var="dto">
 					<tr>
 						<td>${dto.num}</td>
-						<td><a href="detail.iu?num=${dto.num}">${dto.title}</a></td>
+						<td>
+						<c:catch>
+						<c:forEach begin="1" end="${dto.depth}">&ensp;</c:forEach>
+						</c:catch>
+						<a href="detail.iu?num=${dto.num}">${dto.title}</a>
+						</td>
 						<td>${dto.writer}</td>
 						<td>${dto.regDate}</td>
 						<td>${dto.hit}</td>
@@ -36,21 +68,24 @@
   		<ul class="pagination">
 	  		<c:if test="${pager.pre}">
 	    		<li class="page-item">
-	    			<a class="page-link" href="./list.iu?page=${pager.startNum - 1}">Previous</a>
+	    			<a class="page-link" href="./list.iu?page=${pager.startNum - 1}&kind=${pager.kind}&search=${pager.search}">Previous</a>
 	    		</li>
 	    	</c:if>
     	
     	
     		<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
   				<li class="page-item">
-  				<a class="page-link" href="./list.iu?page=${i}">${i}</a>
+  				<a class="page-link" href="./list.iu?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a>
   				</li>
   			</c:forEach>
   			
-  			
+  			<c:choose>
+  			<c:when test="">
+  			</c:when>
+  			</c:choose>
   			<%-- <c:if test="${pager.next}"> --%>
     			<li class="page-item ${pager.next?'':'disabled'}">
-    				<a class="page-link" href="./list.iu?page=${pager.lastNum + 1}">Next</a>
+    				<a class="page-link" href="./list.iu?page=${pager.lastNum + 1}&kind=${pager.kind}&search=${pager.search}">Next</a>
     			</li>
     		<%-- </c:if> --%>
   		</ul>

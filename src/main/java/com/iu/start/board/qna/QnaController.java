@@ -6,7 +6,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,6 +25,19 @@ public class QnaController {
 	@ModelAttribute("board")
 	public String getBoard() {
 		return "QnA";
+	}
+	
+	@PostMapping("reply.iu")
+	public String setReply(QnaDTO qnaDTO)throws Exception{
+		int result = qnaService.setReply(qnaDTO);
+		return "redirect:list.iu";
+	}
+	
+	@GetMapping("reply.iu")
+	public ModelAndView setReply(BoardDTO boardDTO, ModelAndView mv)throws Exception {
+		mv.addObject("boardDTO", boardDTO);
+		mv.setViewName("board/reply");
+		return mv;
 	}
 
 	@RequestMapping(value = "list.iu")

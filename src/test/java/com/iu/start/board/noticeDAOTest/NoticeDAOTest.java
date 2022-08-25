@@ -70,10 +70,10 @@ public class NoticeDAOTest extends MyAbstractTest{
 		assertEquals(1, result);
 	}
 	
-	@Test
-	public void getCount() throws Exception {
-		long result = noticeDAO.getCount();
-		System.out.println(result);
-	}
+//	@Test
+//	public void getCount() throws Exception {
+//		long result = noticeDAO.getCount(pager);
+//		System.out.println(result);
+//	}
 
 }

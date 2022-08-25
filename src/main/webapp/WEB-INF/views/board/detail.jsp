@@ -17,9 +17,14 @@
   			<label for="floatingEmptyPlaintextInput">Writer : ${boardDTO.writer}</label>
 		</div>
 		<div class="form-floating mb-3">
-  			<textarea readonly class="form-control-plaintext" id="floatingPlaintextInput" placeholder="name@example.com ">${boardDTO.contents}</textarea>
+  			<textarea readonly class="form-control-plaintext" id="floatingPlaintextInput">${boardDTO.contents}</textarea>
   			<label for="floatingPlaintextInput">Contents</label>
 		</div>
+		
+		<div class="row">
+			<a href="reply.iu?num=${boardDTO.num}" class="btn btn-primary">Reply</a>
+		</div>
+		
 		<a href="update.iu?num=${boardDTO.num}">수정하기</a>
 	</section>
 <c:import url="../template/footer.jsp"></c:import>
