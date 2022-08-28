@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.start.bankAccount.BankAccountService;
@@ -36,6 +37,7 @@ public class MemberController {
 		bankMembersDTO = bankMembersService.getMyPage(bankMembersDTO);
 		mv.addObject("myPage", bankMembersDTO);
 		mv.setViewName("member/mypage");
+		System.out.println(bankMembersDTO.getBankMembersFileDTO().getFileName());
 		return mv;
 	}
 	@RequestMapping(value = "logout.nj", method = RequestMethod.GET )
@@ -96,8 +98,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public String join(BankMembersDTO bankMembersDTO) throws Exception {
+	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo) throws Exception {
 		System.out.println("조인 POST 실행");
+		System.out.println("upload 파일명 : " + photo.getOriginalFilename());
+		System.out.println("upload 파라미터명 : " + photo.getName());
+		System.out.println("upload 파일 크기 : " + photo.getSize());
+		
 //		BankMembersDTO bankMembersDTO = new BankMembersDTO();
 //		bankMembersDTO.setUsername(request.getParameter("id"));
 //		bankMembersDTO.setPassword(request.getParameter("pw"));
@@ -106,8 +112,8 @@ public class MemberController {
 //		bankMembersDTO.setPhone(request.getParameter("phone"));
 		
 		
-			int result = bankMembersService.setJoin(bankMembersDTO);
-			System.out.println(result == 1);
+			int result = bankMembersService.setJoin(bankMembersDTO, photo);
+//			System.out.println(result == 1);
 		return "redirect:login";
 	}
 	

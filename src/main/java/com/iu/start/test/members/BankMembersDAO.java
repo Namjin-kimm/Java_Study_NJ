@@ -10,6 +10,7 @@ import java.util.StringTokenizer;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Repository
 public class BankMembersDAO implements MembersDAO{
@@ -17,6 +18,10 @@ public class BankMembersDAO implements MembersDAO{
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.iu.start.test.members.BankMembersDAO.";
+	
+	public int setAddFile(BankMembersFileDTO bankMembersFileDTO)throws Exception {
+		return sqlSession.insert(NAMESPACE + "setAddFile", bankMembersFileDTO);
+	}
 	
 	@Override
 	public BankMembersDTO getMyPage(BankMembersDTO bankMembersDTO) throws Exception {

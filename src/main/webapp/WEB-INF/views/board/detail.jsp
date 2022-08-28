@@ -25,7 +25,8 @@
 			<a href="reply.iu?num=${boardDTO.num}" class="btn btn-primary">Reply</a>
 		</div>
 		
-		<a href="update.iu?num=${boardDTO.num}">수정하기</a>
+		<a href="update.iu?num=${boardDTO.num}">수정</a>
+		<a href="delete.iu?num=${boardDTO.num}">삭제</a>
 	</section>
 <c:import url="../template/footer.jsp"></c:import>
 

@@ -43,6 +43,11 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<div class="row">
+				<img alt="" src="../resources/upload/member/${myPage.bankMembersFileDTO.fileName}">
+			</div>
+			
+			${myPage}
 	</section>
 </body>
 </html>

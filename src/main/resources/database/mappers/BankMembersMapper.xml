@@ -5,6 +5,11 @@
 		    
 	<mapper namespace="com.iu.start.test.members.BankMembersDAO">
 	
+	<insert id="setAddFile" parameterType="BankMembersFileDTO">
+		INSERT INTO MEMBERFILE (FILENUM, USERNAME, FILENAME, ORINAME) VALUES
+		(FILE_SEQ.NEXTVAL, #{userName}, #{fileName}, #{oriName})
+	</insert>
+	
 	<select id="getLogin" parameterType="BankMembersDTO" resultType="BankMembersDTO">
 		SELECT USERNAME, NAME FROM MEMBERS WHERE USERNAME = #{username} AND PASSWORD = #{password}
 	</select>
@@ -18,16 +23,21 @@
 	</select>
 		    
 	<select id="getMyPage" parameterType="BankMembersDTO" resultMap="getMyPageResult">
-		SELECT M.USERNAME, M.NAME, M.EMAIL, M.PHONE, BA.ACCOUNTNUM, BB.BOOKNAME, BA.ACCOUNTDATE
-			FROM MEMBERS M
-			INNER JOIN
-			BANKACCOUNT BA
-			ON M.USERNAME = BA.USERNAME
-			
-			INNER JOIN
-			BANKBOOK BB
-			USING(BOOKNUM)
-			WHERE M.USERNAME=#{username}
+	SELECT M.USERNAME, NAME, EMAIL, PHONE, FILENUM, FILENAME, ACCOUNTNUM, BOOKNAME, ACCOUNTDATE
+      	FROM MEMBERS M
+    
+         LEFT JOIN
+         MEMBERFILE MF
+         ON M.USERNAME = MF.USERNAME
+      
+          LEFT JOIN
+          BANKACCOUNT BA
+          ON M.USERNAME = BA.USERNAME
+          
+          LEFT JOIN
+          BANKBOOK BB
+          ON BA.BOOKNUM = BB.BOOKNUM
+           WHERE M.USERNAME=#{username}
 	</select>
 	
 	<resultMap type="BankMembersDTO" id="getMyPageResult">
@@ -35,6 +45,10 @@
 		<result column="NAME" property="name"/>
 		<result column="EMAIL" property="email"/>
 		<result column="PHONE" property="phone"/>
+		<association property="bankMembersFileDTO" javaType="BankMembersFileDTO">
+			<id column="FILENUM" property="fileNum"/>
+			<result column="FILENAME" property="fileName"/>
+		</association>
 		<collection property="bankAccountDTOs" javaType="List" ofType="BankAccountDTO">
 			<id column="ACCOUNTNUM" property="accountNum"/>
 			<result column="ACCOUNTDATE" property="accountDate"/>

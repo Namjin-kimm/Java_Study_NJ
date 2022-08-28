@@ -10,11 +10,17 @@
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
-		<form action="join" method="post">
+	
+		<form action="join" method="post" enctype="multipart/form-data">
+		
 			<section class="container-fluid col-lg-8 mt-4">
 				<h1>Join Page</h1>
+				
+				<div>
 				<p>ID</p>
 				<p><input class="form-control form-control-lg" type="text" placeholder="ID" aria-label=".form-control-lg example" name="username"></p>
+				</div>
+				
 				<p>PW</p>
 				<p><input class="form-control form-control-lg" type="password" placeholder="PW" aria-label=".form-control-lg example" name="password"></p>
 				<p>Name</p>
@@ -23,6 +29,12 @@
 				<p><input class="form-control form-control-lg" type="email" placeholder="Email" aria-label=".form-control-lg example" name="email"></p>
 				<p>Phone</p>
 				<p><input class="form-control form-control-lg" type="text" placeholder="Phone" aria-label=".form-control-lg example" name="phone"></p>
+				
+				<div>
+				<p>Photo</p>
+				<p><input class="form-control form-control-lg" type="file" aria-label=".form-control-lg example" name="photo" id="files"></p>
+				</div>
+				
 				<button type="submit" class="btn btn-primary">Submit</button>
 			</section>
 		</form>

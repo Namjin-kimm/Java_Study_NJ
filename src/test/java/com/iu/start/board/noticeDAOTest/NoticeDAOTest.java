@@ -17,7 +17,7 @@ public class NoticeDAOTest extends MyAbstractTest{
 	@Autowired
 	private NoticeDAO noticeDAO;
 	
-//	@Test
+	@Test
 	public void setAddTest() throws Exception {
 		BoardDTO boardDTO = new BoardDTO();
 //		NoticeDTO noticeDTO = new NoticeDTO();

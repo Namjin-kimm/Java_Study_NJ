@@ -2,6 +2,8 @@ package com.iu.start.board.impl;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.iu.start.util.Pager;
 
 public interface BoardService {
