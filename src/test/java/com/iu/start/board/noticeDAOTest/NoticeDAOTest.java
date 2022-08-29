@@ -4,24 +4,31 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockServletContext;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.iu.start.MyAbstractTest;
 import com.iu.start.board.impl.BoardDTO;
 import com.iu.start.board.notice.NoticeDAO;
 import com.iu.start.board.notice.NoticeDTO;
 
+@WebAppConfiguration
 public class NoticeDAOTest extends MyAbstractTest{
 
 	@Autowired
 	private NoticeDAO noticeDAO;
+	@Autowired
+	private MockServletContext mockServletContext;
 	
 	@Test
 	public void setAddTest() throws Exception {
 		BoardDTO boardDTO = new BoardDTO();
 //		NoticeDTO noticeDTO = new NoticeDTO();
-		for(int i = 0; i <100; i++) {
+		for(int i = 0; i <44; i++) {
 		boardDTO.setTitle("KK" + i);
 		boardDTO.setWriter("KNJ" + i);
 		boardDTO.setContents("kkkkkk" + i);

@@ -4,8 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.start.board.impl.BoardDTO;
 import com.iu.start.board.impl.BoardService;
@@ -58,7 +61,7 @@ public class QnaService implements BoardService{
 	}
 
 	@Override
-	public int setAdd(BoardDTO boardDTO) throws Exception {
+	public int setAdd(BoardDTO boardDTO, MultipartFile [] files, ServletContext servletContext) throws Exception {
 		System.out.println("Insert 전 : " + boardDTO.getNum());
 		int result = qnaDAO.setAdd(boardDTO);
 		System.out.println("Insert  : " + boardDTO.getNum());

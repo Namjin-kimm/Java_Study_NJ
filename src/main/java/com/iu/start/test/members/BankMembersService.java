@@ -42,7 +42,7 @@ public class BankMembersService {
 		return bankMembersDAO.getMyPage(bankMembersDTO);
 	}
 	
-	public int setJoin(BankMembersDTO bankMembersDTO, MultipartFile photo)throws Exception{
+	public int setJoin(BankMembersDTO bankMembersDTO, MultipartFile photo, ServletContext servletContext)throws Exception{
 		int result = bankMembersDAO.setJoin(bankMembersDTO);
 		//1. HDD에 파일을 저장
 		// 파일 저장시에 경로는 OS(운영체제)의 기준으로 설정

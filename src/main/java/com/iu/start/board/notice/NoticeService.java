@@ -7,13 +7,16 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.start.board.impl.BoardDTO;
+import com.iu.start.board.impl.BoardFileDTO;
 import com.iu.start.board.impl.BoardService;
+import com.iu.start.util.FileManager;
 import com.iu.start.util.Pager;
 
 @Service
@@ -21,8 +24,11 @@ public class NoticeService implements BoardService{
 	
 	@Autowired
 	private NoticeDAO noticeDAO;
+//	@Autowired
+//	private ServletContext servletContext;
+	
 	@Autowired
-	private ServletContext servletContext;
+	private FileManager fileManager;
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
@@ -104,34 +110,60 @@ public class NoticeService implements BoardService{
 	}
 
 	@Override
-	public int setAdd(BoardDTO boardDTO) throws Exception {
+	public int setAdd(BoardDTO boardDTO, MultipartFile [] files, ServletContext servletContext) throws Exception {
 		
-		return noticeDAO.setAdd(boardDTO);
+		int result = noticeDAO.setAdd(boardDTO);
+		String path = "resources/upload/notice";
+		for(MultipartFile multipartFile: files) {
+			if(multipartFile.isEmpty()) {
+				continue;
+			}
+			String fileName = fileManager.saveFile(servletContext, path, multipartFile);
+			BoardFileDTO boardFileDTO = new BoardFileDTO();
+			boardFileDTO.setFileName(fileName);
+			boardFileDTO.setOriName(multipartFile.getOriginalFilename());
+			boardFileDTO.setNum(boardDTO.getNum());
 	}
+		return result;
+}
 	
 //	오버로딩
-	public int setAdd(BoardDTO boardDTO, MultipartFile [] files) throws Exception {
-			
-			String realpath = servletContext.getRealPath("/resources/upload/notice");
-			
-			
-			for(int i = 0; i < files.length; i++) {
-				File file = new File(realpath);
-				if(files[i].isEmpty()) {
+//	public int setAdd(BoardDTO boardDTO, MultipartFile [] files) throws Exception {
+//			
+//			int result = noticeDAO.setAdd(boardDTO);
+//			//먼저 notice가 등록이 되어야 파일이 notice table의 num을 참조할 수 있다
+//			//사실 여기 boardDTO는 처음에는 num이 없지만
+////			<selectKey keyProperty="num" order="BEFORE" resultType="Long">
+////			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+////			</selectKey>
+////			이 코드를 통해 시퀀스에서 하나 뽑은 값을 boardDTO의 num에 저장한다.
+////			그럼 매개면수로 받는 저 boardDTO의 num에 그 시퀀스 값이 넘어올 것이다
+////			String realpath = servletContext.getRealPath("/resources/upload/notice");
+////			
+////			
+////			for(int i = 0; i < files.length; i++) {
+////				File file = new File(realpath);
+////				if(files[i].isEmpty()) {
+////	
+////					if(file.exists()) {
+////						file.mkdirs();
+////					}
+////					//file = new File(realpath)
+////					
+////					//저장하는 코드
+////					String fileName = UUID.randomUUID().toString();
+////					fileName = fileName + "_" + files[i].getOriginalFilename();
+////					
+////					file = new File(file, fileName);
+////					files[i].transferTo(file);
+//					
+//					BoardFileDTO boardFileDTO = new BoardFileDTO();
+//					boardFileDTO.setFileName(fileName);
+//					boardFileDTO.setOriName(files[i].getOriginalFilename());
+//					
+//					return 0; 
+//				}		
 	
-					if(file.exists()) {
-						file.mkdirs();
-					}
-					String fileName = UUID.randomUUID().toString();
-					fileName = fileName + "_" + files[i].getOriginalFilename();
-					file = new File(file, fileName);
-					files[i].transferTo(file);
-				}		
-	
-			}
-			return 0; 
-			//noticeDAO.setAdd(boardDTO);
-		}
 	
 
 	@Override
@@ -144,6 +176,9 @@ public class NoticeService implements BoardService{
 		return noticeDAO.setDelete(boardDTO);
 	}
 	
-	
 
+	
 }
+
+
+

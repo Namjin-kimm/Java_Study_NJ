@@ -25,6 +25,13 @@
 			<a href="reply.iu?num=${boardDTO.num}" class="btn btn-primary">Reply</a>
 		</div>
 		
+		<!--  쌤 깃허브 보기 -->
+		<c:forEach items="${boardDTO.boardFileDTOs}" var="fileDTO">
+			<p>
+			<a href="../resources/upload/${board}/${fileDTO.fileName}">${fileDTO.oriName}</a>
+			</p>
+		</c:forEach>
+		
 		<a href="update.iu?num=${boardDTO.num}">수정</a>
 		<a href="delete.iu?num=${boardDTO.num}">삭제</a>
 	</section>

@@ -2,6 +2,9 @@ package com.iu.start.board.notice;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -62,8 +65,8 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "add.iu", method = RequestMethod.POST)
-	public ModelAndView setAdd(BoardDTO boardDTO, MultipartFile [] files)throws Exception{
-		int result = noticeService.setAdd(boardDTO, files);
+	public ModelAndView setAdd(BoardDTO boardDTO, MultipartFile [] files, HttpSession session)throws Exception{
+		int result = noticeService.setAdd(boardDTO, files, session.getServletContext());
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:list.iu");
 		return mv;
