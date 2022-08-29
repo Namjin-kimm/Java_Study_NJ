@@ -26,7 +26,6 @@
 				<p><input class="form-control form-control-lg" type="text" placeholder="Title" aria-label=".form-control-lg example" name="title"></p>
 				<p>Contents</p>
 				<p><textarea input class="form-control form-control-lg" type="text" placeholder="Contents" aria-label=".form-control-lg example" name="contents" id="contents"></textarea></p>
-				<button type="submit" class="btn btn-primary">Submit</button>
 				
 				<p>Image</p>
 				<p><input class="form-control form-control-lg" type="file" aria-label=".form-control-lg example" name="files"></p>
@@ -34,6 +33,7 @@
 				<p><input class="form-control form-control-lg" type="file" aria-label=".form-control-lg example" name="files"></p>
 				<p>Image</p>
 				<p><input class="form-control form-control-lg" type="file" aria-label=".form-control-lg example" name="files"></p>
+				<button type="submit" class="btn btn-primary">Submit</button>
 			</section>
 		</form>
 <c:import url="../template/footer.jsp"></c:import>

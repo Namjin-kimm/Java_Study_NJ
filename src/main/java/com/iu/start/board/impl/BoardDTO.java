@@ -50,7 +50,11 @@ public class BoardDTO {
 	public void setHit(Long hit) {
 		this.hit = hit;
 	}
-	
-	
+	public List<BoardFileDTO> getBoardFileDTOs() {
+		return boardFileDTOs;
+	}
+	public void setBoardFileDTOs(List<BoardFileDTO> boardFileDTOs) {
+		this.boardFileDTOs = boardFileDTOs;
+	}
 
 }

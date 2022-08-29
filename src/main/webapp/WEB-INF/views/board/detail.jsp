@@ -17,7 +17,7 @@
   			<label for="floatingEmptyPlaintextInput">Writer : ${boardDTO.writer}</label>
 		</div>
 		<div class="form-floating mb-3">
-  			<textarea readonly class="form-control-plaintext" id="floatingPlaintextInput">${boardDTO.contents}</textarea>
+  			<p>${boardDTO.contents}</p>
   			<label for="floatingPlaintextInput">Contents</label>
 		</div>
 		
